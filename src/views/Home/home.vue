@@ -7,11 +7,11 @@
     <!--主体区-->
     <el-container>
       <!--左侧边栏-->
-      <el-aside width="200px">
-        <home-aside/>
+      <el-aside :width="asideWidth" >
+        <home-aside @changeAsideWidth="changeAsideWidth"/>
       </el-aside>
       <!--右侧主题-->
-      <el-main>Main</el-main>
+      <el-main><home-main/></el-main>
     </el-container>
   </el-container>
 </template>
@@ -23,7 +23,17 @@ import HomeMain from "@/views/Home/components/HomeMain"
 
 export default {
   name: "home",
-  methods: {},
+  data() {
+    return {
+      asideWidth: '200px'
+    }
+  },
+  methods: {
+    changeAsideWidth(bool) {
+      // console.log(bool)
+      this.asideWidth = bool? '60px':'200px'
+    }
+  },
   components: {
     HomeHeader,
     HomeAside,
